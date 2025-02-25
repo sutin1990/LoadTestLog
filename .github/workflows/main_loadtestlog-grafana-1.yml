@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://loadtestlog.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_001296de1db444c8b609db0ad632e523 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_356dbc1c76c7443fa2906a381ce61a10 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_7f58464170134023a10a475a75693860 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_001296de1db444c8b609db0ad632e523 }}/grafana/grafana:${{ github.sha }}
+        tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/grafana/grafana:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'loadtestlog-grafana-1'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_bae2489d9e914f41b4db02c29f62b492 }}
-        images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_001296de1db444c8b609db0ad632e523 }}/grafana/grafana:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_80030bcab23c4386aee4a33390b5d84a }}
+        images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/grafana/grafana:${{ github.sha }}'
