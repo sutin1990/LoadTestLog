@@ -1,0 +1,51 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - loadtestlog-grafana-1
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to registry
+      uses: docker/login-action@v2
+      with:
+        registry: https://loadtest.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_6d19ad27448544c1a3f612d1730c2ebc }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_4b231802ba5e44248e877e6f408c3209 }}
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: loadtest.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_6d19ad27448544c1a3f612d1730c2ebc }}/grafana/grafana:${{ github.sha }}
+        file: ./Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'loadtestlog-grafana-1'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_96ddf5d6ec6748268c712d7c02aff662 }}
+        images: 'loadtest.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_6d19ad27448544c1a3f612d1730c2ebc }}/grafana/grafana:${{ github.sha }}'
