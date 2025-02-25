@@ -1,0 +1,33 @@
+Azure Container Registry (ACR)
+เป็นพื้นที่เก็บ Docker Images คล้ายๆ Docker Hub นะครับ แต่จะเป็นบริการบน Microsoft Azure 
+
+docker tag grafana/grafana:latest loadtest.azurecr.io/grafana/grafana:latest
+
+docker tag prom/prometheus loadtest.azurecr.io/prom/Prometheus
+
+docker tag influxdb:1.8 loadtest.azurecr.io/influxdb:1.8
+
+docker tag otel/opentelemetry-collector:0.95.0 loadtest.azurecr.io/otel/opentelemetry-collector:0.95.0
+
+docker tag grafana/loki:2.9.4 loadtest.azurecr.io/grafana/loki:2.9.4
+
+docker tag grafana/promtail:2.9.4 loadtest.azurecr.io/grafana/promtail:2.9.4
+
+docker tag restapitest:latest loadtest.azurecr.io/restapitest:latest
+
+docker push loadtest.azurecr.io/grafana/grafana:latest
+
+docker push loadtest.azurecr.io/prom/prometheus:latest
+
+docker push loadtest.azurecr.io/influxdb:1.8
+
+docker push loadtest.azurecr.io/otel/opentelemetry-collector:0.95.0
+
+docker push loadtest.azurecr.io/grafana/loki:2.9.4
+
+docker push loadtest.azurecr.io/grafana/promtail:2.9.4
+
+- create App Service plans
+- create App Services
+
+influxdb

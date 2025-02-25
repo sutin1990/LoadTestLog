@@ -1,0 +1,18 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  restapitest:
+    image: restapitest
+    build:
+      context: .
+      dockerfile: Rest-Api-Test/Rest-Api-Test/Dockerfile
+      args:
+        - configuration=Debug
+    ports:
+      - 5213:5213
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw

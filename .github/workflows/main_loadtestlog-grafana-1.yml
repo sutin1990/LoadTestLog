@@ -31,9 +31,9 @@ jobs:
       with:
         push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/grafana/grafana:${{ github.sha }}
-        #file: ./Dockerfile
-        run: |
-          docker compose up -d
+        file: ./Dockerfile
+        # run: |
+        #   docker compose up -d
 
 
   deploy:

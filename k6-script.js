@@ -15,7 +15,7 @@ export let options = {
 };
 
 export default function () {
-  const response = http.get("https://localhost:7194/api/GetMockData", {
+  const response = http.get("https://rest-api-test-tin-gwbzhvhra8h7f8ck.southeastasia-01.azurewebsites.net/api/GetMockData", {
     headers: { Accepts: "application/json" },
   });
   check(response, { "status is 200": (r) => r.status === 200 });

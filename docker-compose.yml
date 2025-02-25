@@ -34,6 +34,13 @@ services:
   #   restart: unless-stopped
   #   networks:
   #     - monitoring
+  restapitest:
+    image: restapitest
+    build:
+      context: .
+      dockerfile: Rest-Api-Test/Rest-Api-Test/Dockerfile
+    ports:
+      - 5213:5213
   loki:
     image: grafana/loki:2.9.4
     ports:
@@ -45,6 +52,7 @@ services:
   promtail:
     image: grafana/promtail:2.9.4
     volumes:
+      - ./config/promtail-config.yml:/etc/promtail/config.yml
       - /var/log:/var/log
     command: -config.file=/etc/promtail/config.yml
     networks:
