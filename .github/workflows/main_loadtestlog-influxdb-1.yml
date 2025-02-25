@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5a3d837bae134e5f8c9f507a94eebb83 }}/influxdb:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./influxdb-dockerfile/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
