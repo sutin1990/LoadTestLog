@@ -39,6 +39,12 @@ jobs:
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/influxdb:${{ github.sha }}
         file: ./influxdb-dockerfile/Dockerfile
 
+    - name: Build loki and push container image to registry
+      uses: docker/build-push-action@v3
+      with:
+        tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/grafana/loki:${{ github.sha }}
+        file: ./loki-dockerfile/Dockerfile
+
   deploy-grafana:
     runs-on: ubuntu-latest
     needs: build
@@ -72,3 +78,21 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_640c62eeffe748cbaf4c5af8700fb28c }}
         images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/influxdb:${{ github.sha }}'
+
+
+  deploy-loki:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'loadtestlog-loki-1'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_8f2ebd5fa70d49aaa85aff91fa613b32 }}
+        images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/grafana/loki:${{ github.sha }}'
