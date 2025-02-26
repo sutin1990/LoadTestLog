@@ -2,12 +2,15 @@
 FROM grafana/loki:2.9.4
 
 
-# Expose default Loki port
+# Set the working directory
+WORKDIR /etc/loki
+
+# Copy the custom Loki config file
+COPY /config/loki-config.yaml /etc/loki/loki-config.yaml
+
+# Expose Loki's default ports
 EXPOSE 3100
 
-# Copy custom configuration file (if needed)
-# COPY loki-config.yaml /etc/loki/config.yaml
-
-# Command to run Loki (uncomment below if using a custom config)
- CMD ["/usr/bin/loki", "-config.file=/etc/loki/config.yaml"]
+# Start Loki with the custom config file
+CMD ["/usr/bin/loki", "-config.file=/etc/loki/loki-config.yaml"]
 
