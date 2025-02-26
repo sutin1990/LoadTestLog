@@ -23,15 +23,15 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://loadtestlog.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_5a3d837bae134e5f8c9f507a94eebb83 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_f6618e46b5d94bb78d19d899091370bf }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_4c08de88d9de4a93a61e34993126d042 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_6c1d873248d84e2890c12cb4f22603b5 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
-        #push: true
-        tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5a3d837bae134e5f8c9f507a94eebb83 }}/influxdb:${{ github.sha }}
-        file: ./influxdb-dockerfile/Dockerfile
+        push: true
+        tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_4c08de88d9de4a93a61e34993126d042 }}/influxdb:${{ github.sha }}
+        file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'loadtestlog-influxdb-1'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_640c62eeffe748cbaf4c5af8700fb28c }}
-        images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5a3d837bae134e5f8c9f507a94eebb83 }}/influxdb:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_18a65031734e4c1fb4fc00ff704c5a13 }}
+        images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_4c08de88d9de4a93a61e34993126d042 }}/influxdb:${{ github.sha }}'
