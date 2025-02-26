@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_44c41efaa43c4b598aea0310747d25ef }}/grafana/loki:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./loki-dockerfile/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
