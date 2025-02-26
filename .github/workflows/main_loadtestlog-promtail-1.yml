@@ -29,7 +29,7 @@ jobs:
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
-        push: true
+        #push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_21eccd2d1e4c4a42bda9319d0b89cdb2 }}/grafana/promtail:${{ github.sha }}
         file: ./promtail-dockerfile/Dockerfile
 
