@@ -55,12 +55,3 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_80030bcab23c4386aee4a33390b5d84a }}
         images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/grafana/grafana:${{ github.sha }}'
-
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'loadtestlog-influxdb-1'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_640c62eeffe748cbaf4c5af8700fb28c }}
-        images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/influxdb:${{ github.sha }}'
