@@ -35,7 +35,7 @@ public class GetMockDataController : ControllerBase
         return response;
     }
 
-    
+
 }
 
 public static class Conv_Extension
