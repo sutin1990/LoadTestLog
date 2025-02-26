@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_95e5c84592524d4a9327b89b9d1a1069 }}/restapitest:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./Rest-Api-Test/Rest-Api-Test/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,4 +48,4 @@ jobs:
         app-name: 'rest-api-test'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_19c43521f636413d8413bc35e8a5a047 }}
-        images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_95e5c84592524d4a9327b89b9d1a1069 }}/restapitest:${{ github.sha }}'
+        images: 'loadtestlog.azurecr.io/restapitest:${{ github.sha }}'
