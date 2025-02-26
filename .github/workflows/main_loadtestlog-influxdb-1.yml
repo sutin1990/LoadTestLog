@@ -29,7 +29,7 @@ jobs:
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
-        push: true
+        #push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_4c08de88d9de4a93a61e34993126d042 }}/influxdb:${{ github.sha }}
         file: ./influxdb-dockerfile/Dockerfile
 
