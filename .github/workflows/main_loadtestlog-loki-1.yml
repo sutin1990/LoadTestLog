@@ -4,9 +4,9 @@
 name: Build and deploy container app to Azure Web App - loadtestlog-loki-1
 
 on:
-  push:
-    branches:
-      - main
+  #push:
+  #  branches:
+  #    - main
   workflow_dispatch:
 
 jobs:
@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_8a0db103970e4c37b45c9d2cb834e50c }}/grafana/loki:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./loki-dockerfile/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
