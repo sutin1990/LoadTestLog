@@ -8,6 +8,7 @@ WORKDIR /etc/loki
 COPY ./config/loki-config.yaml /etc/loki/loki-config.yaml
 
 # Ensure correct permissions
+USER root
 RUN mkdir -p /data/loki && chmod -R 777 /data/loki
 
 # Set non-root user for Azure compatibility

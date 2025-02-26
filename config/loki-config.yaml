@@ -29,8 +29,8 @@ storage_config:
     shared_store: azure
   azure:
     container_name: loki-data
-    account_name: "{{DOCKER_REGISTRY_SERVER_USERNAME}}"
-    account_key: "{{DOCKER_REGISTRY_SERVER_PASSWORD}}"
+    account_name: "${{ DOCKER_REGISTRY_SERVER_USERNAME }}"
+    account_key: "${{ DOCKER_REGISTRY_SERVER_PASSWORD }}"
 
 limits_config:
   reject_old_samples: true
