@@ -23,15 +23,15 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://loadtestlog.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_ccb01fc154854ac997ce6ac277d65675 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_814b577e9d904a37995b73b5513a6123 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_44c41efaa43c4b598aea0310747d25ef }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_4ba2cf2c4ae44745a781fd649659c7bb }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
-        #push: true
-        tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ccb01fc154854ac997ce6ac277d65675 }}/grafana/loki:${{ github.sha }}
-        file: ./loki-dockerfile/Dockerfile
+        push: true
+        tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_44c41efaa43c4b598aea0310747d25ef }}/grafana/loki:${{ github.sha }}
+        file: ./Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'loadtestlog-loki-1'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_8f2ebd5fa70d49aaa85aff91fa613b32 }}
-        images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ccb01fc154854ac997ce6ac277d65675 }}/grafana/loki:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_490eb2899b7b4434847c00db45774d58 }}
+        images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_44c41efaa43c4b598aea0310747d25ef }}/grafana/loki:${{ github.sha }}'
