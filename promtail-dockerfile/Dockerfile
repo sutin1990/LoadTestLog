@@ -5,7 +5,7 @@ FROM grafana/promtail:2.9.4
 EXPOSE 9080
 
 # Copy custom Promtail configuration (if needed)
-COPY ./config/promtail-config.yaml /etc/promtail/config.yaml
+# COPY ./config/promtail-config.yaml /etc/promtail/config.yaml
 
 # Define volumes
 VOLUME ./config/promtail-config.yml:/etc/promtail/config.yml \
