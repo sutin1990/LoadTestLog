@@ -27,7 +27,7 @@ public class GetMockDataController : ControllerBase
                 EmployeeId = Random.Shared.Next(1001, 10000).ToString(),
                 DateFrom = "01/10/2024",
                 DateTo = "02/10/2024",
-                LocationCode = "xxx",
+                LocationCode = "1011kk",
             }
         };
         string message = $"Call QueryOrderByASCEmpId , Response: {response.ObjToJson()}";
