@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5c59346df70f4aa9ba9d67e57efe0d16 }}/restapitest:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./Rest-Api-Test/Rest-Api-Test/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
