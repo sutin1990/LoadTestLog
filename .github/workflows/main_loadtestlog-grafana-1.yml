@@ -26,19 +26,15 @@ jobs:
         username: ${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}
         password: ${{ secrets.AzureAppService_ContainerPassword_7f58464170134023a10a475a75693860 }}
 
-    - name: Build grafana and push container image to registry
+    - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/grafana/grafana:${{ github.sha }}
         file: ./grafana-dockerfile/Dockerfile
-
-    - name: Build influxdb and push container image to registry
-      uses: docker/build-push-action@v3
-      with:
-        push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5a3d837bae134e5f8c9f507a94eebb83 }}/influxdb:${{ github.sha }}
         file: ./influxdb-dockerfile/Dockerfile
+        
         # run: |
         #   docker compose up -d
 
