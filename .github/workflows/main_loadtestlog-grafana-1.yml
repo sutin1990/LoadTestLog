@@ -29,7 +29,7 @@ jobs:
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
-        push: true
+        #push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_9cabfa7e54fb4fe3b91c54cc8a7ad85e }}/grafana/grafana:${{ github.sha }}
         file: ./grafana-dockerfile/Dockerfile
 

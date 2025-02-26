@@ -29,7 +29,7 @@ jobs:
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
-        push: true
+        #push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_44c41efaa43c4b598aea0310747d25ef }}/grafana/loki:${{ github.sha }}
         file: ./loki-dockerfile/Dockerfile
 
