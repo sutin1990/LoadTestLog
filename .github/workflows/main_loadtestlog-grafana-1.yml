@@ -36,7 +36,7 @@ jobs:
     - name: Build influxdb and push container image to registry
       uses: docker/build-push-action@v3
       with:
-        tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5a3d837bae134e5f8c9f507a94eebb83 }}/influxdb:${{ github.sha }}
+        tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/influxdb:${{ github.sha }}
         file: ./influxdb-dockerfile/Dockerfile
 
   deploy:
@@ -63,4 +63,4 @@ jobs:
         app-name: 'loadtestlog-influxdb-1'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_640c62eeffe748cbaf4c5af8700fb28c }}
-        images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5a3d837bae134e5f8c9f507a94eebb83 }}/influxdb:${{ github.sha }}'
+        images: 'loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_231396f06c0d430f9effe50bff46bd93 }}/influxdb:${{ github.sha }}'
