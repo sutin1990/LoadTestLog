@@ -29,9 +29,12 @@ jobs:
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
+        context: .  # Set the context to the current directory (root of repo)
         push: true
         tags: loadtestlog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_8a0db103970e4c37b45c9d2cb834e50c }}/grafana/loki:${{ github.sha }}
         file: ./loki-dockerfile/Dockerfile
+        cache-from: type=registry,ref=myusername/my-repo:cache  # Enable cache (optional)
+        cache-to: type=registry,ref=myusername/my-repo:cache,mode=max  # Enable caching (optional)
 
   deploy:
     runs-on: ubuntu-latest
